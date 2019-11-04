@@ -33,18 +33,18 @@
 ### teclan-springcloud-server2
 
 
-服务提供者，端口8082，提供 `/sayGoodbye` 接口，在此接口中，调用了 `server1`的`hello`接口
+服务提供者，端口8082，提供 `/bye` 接口，在此接口中，调用了 `server1`的`hello`接口
 
-- URL: /sayGoodbye
+- URL: /bye
 
-- 描述: 返回 `sever1` 的问候消息已经 `server2`的goodbye消息 
+- 描述: 返回 `sever1` 的问候消息以及 `server2`自己的bye消息 
 
 - 方法: GET
 
 - 示例请求 
 
 `
-/sayGoodbye?name=teclan
+/bye?name=teclan
 `
 
 - 示例返回

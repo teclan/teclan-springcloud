@@ -15,25 +15,31 @@
         <version>1.4.4.RELEASE</version>
     </parent>
 
+    <properties>
+        <springboot.version>1.4.4.RELEASE</springboot.version>
+        <springcloud.version>Camden.RELEASE</springcloud.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${springboot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka-server</artifactId>
-            <version>1.4.4.RELEASE</version>
+            <version>${springboot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
-            <version>1.4.4.RELEASE</version>
+            <version>${springboot.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
