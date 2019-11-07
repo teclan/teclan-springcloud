@@ -1,5 +1,5 @@
 // 后端服务跟路径
-var BASE_URL="/";
+var BASE_URL="http://localhost:8082";
 
 // 前端根路径,前后端分离请设置为空，否则与 BASE_URL 同值
 var ROOT_URL=BASE_URL;

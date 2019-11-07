@@ -15,7 +15,7 @@ public class RoleRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Map<String,Object>> findByUsername(String username){
-        List<Map<String,Object>> role = jdbcTemplate.queryForList("select role from user where username=?",username);
+        List<Map<String,Object>> role = jdbcTemplate.queryForList("select \"ROLE\" from \"ROLE\" where username=?",username);
         return role;
     }
 }

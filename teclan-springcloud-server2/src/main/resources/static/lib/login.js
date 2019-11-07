@@ -40,8 +40,6 @@ function login(id,password){
 
                         showMessage(data.message);
 
-                        window.location.href=ROOT_URL+"/resource/home/home.html";
-
                         }else{
                            showMessage(data.message);
                         }
@@ -61,7 +59,7 @@ function login(id,password){
 
      $.ajaxSettings.async = false;
 
- 	sync('POST',BASE_URL+'/login.do',json,handleSuccess,handleFailure);
+ 	sync('POST',BASE_URL+'/auth',json,handleSuccess,handleFailure);
 
 };
 

@@ -1,11 +1,16 @@
 package com.teclan.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -13,12 +18,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+   private CustomAuthenticationProvider customAuthenticationProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/lib/*","/login").permitAll()// 登录页面允许任何人访问
-                .antMatchers("/hello").permitAll()// 允许任何人访问
+                .antMatchers("/lib/*","/login","/auth").permitAll()// 登录页面允许任何人访问
+                .antMatchers("/sayGoodbye").permitAll()
+                .antMatchers("/hello").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -36,8 +44,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     //身份验证管理生成器
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-
+        auth.authenticationProvider(customAuthenticationProvider);
     }
 
 
@@ -45,4 +52,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+
 }
