@@ -1,13 +1,11 @@
-package com.teclan.controller;
+package com.teclan.auth;
 
 import com.alibaba.fastjson.JSONObject;
 import com.teclan.util.HttpTool;
 import com.teclan.util.ResultUtil;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,7 +31,7 @@ public class LoginController {
     private AuthenticationManager authenticationManager;
 
     @GetMapping("/login")
-    public ModelAndView authenticationLogin(ModelAndView mv,HttpSession session) throws IOException {
+    public ModelAndView authenticationLogin(HttpServletRequest request, HttpServletResponse response,ModelAndView mv,HttpSession session) throws IOException {
 
         if (session != null) {
             SavedRequest savedRequest = (SavedRequest)session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");

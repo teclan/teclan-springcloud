@@ -149,6 +149,7 @@ public class HttpTool {
 	public static void setResponse(HttpServletResponseWrapper response, int status, JSONObject content) throws IOException {
 		response.setStatus(status);
 		response.setContentType("application/json;charset=utf-8");
+
 		ServletOutputStream out  = response.getOutputStream();
 		out .write(content.toJSONString().getBytes());
 		out .flush();
