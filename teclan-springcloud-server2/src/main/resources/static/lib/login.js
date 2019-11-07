@@ -21,24 +21,16 @@ function login(id,password){
 
                        if(data.code==200){
 
-                       var callBack = function(configs){
+                        //showMessage(data.message);
 
-                            for(var i in configs){
-                               var item = configs[i];
-                               var key = item.key;
+                        // 登录成功后，后端会返回认证之前的请求url,如果是直接登录，则返回 null
+                        var redirectUrl = data.redirectUrl;
 
-                               var value = data.data[key];
-
-                               localStorage.setItem(key,value);
-
-                               console.log('缓存头请求头信息，key='+key+',value='+value);
-
-                            }
+                        if(redirectUrl != null){ // 跳转到认证之前的地址
+                            window.location.href=redirectUrl;
+                        }else{// 跳到默认页面
+                            window.location.href=ROOT_URL+"/home.html";
                         }
-
-                         readJsonConfig(ROOT_URL+"/resource/json/header.json",callBack);
-
-                        showMessage(data.message);
 
                         }else{
                            showMessage(data.message);

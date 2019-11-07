@@ -11,6 +11,14 @@ public class ResultUtil {
 		return jsonResult;
 	}
 
+	public static JSONObject getwithRedirectUrl(int code, String message,String redirectUrl) {
+		JSONObject jsonResult = new JSONObject();
+		jsonResult.put("code", code);
+		jsonResult.put("message", message);
+		jsonResult.put("redirectUrl", redirectUrl);
+		return jsonResult;
+	}
+
 	public static JSONObject get(int code, String message, Object data) {
 		JSONObject jsonResult = new JSONObject();
 		jsonResult.put("code", code);

@@ -29,6 +29,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
+
+        if(auth==null){
+            return null;
+        }
+
         String username = String.valueOf(auth.getName());
         String password = String.valueOf(auth.getCredentials().toString());
 
@@ -39,17 +44,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                 final UserDetails principal = new User(username, password, userDetails.getAuthorities());
 
                 final Authentication authentication = new UsernamePasswordAuthenticationToken(principal, password, userDetails.getAuthorities());
+
                 return authentication;
             }else{
                 LOGGER.warn("密码不一致,password:{},real:{}",password,userDetails.getPassword());
+                throw new Exception("密码错误，登录失败");
             }
-
         } catch (Exception e) {
             LOGGER.error(e.getMessage(),e);
             return null;
         }
-
-        return null;
     }
 
     @Override
