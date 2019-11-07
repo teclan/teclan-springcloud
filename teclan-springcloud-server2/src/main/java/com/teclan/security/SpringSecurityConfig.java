@@ -17,14 +17,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/authentication/*","/login") // 不需要登录就可以访问
-                .permitAll()
-                .antMatchers("/user/**").hasAnyRole("USER") // 需要具有ROLE_USER角色才能访问
-                .antMatchers("/admin/**").hasAnyRole("ADMIN") // 需要具有ROLE_ADMIN角色才能访问
+                .antMatchers("/lib/*","/login").permitAll()// 登录页面允许任何人访问
+                .antMatchers("/hello").permitAll()// 允许任何人访问
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/authentication/index") // 设置登录页面
+                .loginPage("/login") // 设置登录页面
         ;
 
         // 关闭跨域

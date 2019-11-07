@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GoodByeController {
 
-    @Autowired
-    private Server1Service server1Service;
 
     @RequestMapping(value = "sayGoodbye")
     public  String  sayGoodbyte(String name){
-        return server1Service.sayHello(name)+"\n\n"+"goodbyte "+name;
+        return "goodbyte "+name;
     }
 }

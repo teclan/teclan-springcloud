@@ -9,9 +9,9 @@ import java.io.IOException;
 @Controller
 public class LoginController {
 
-    @GetMapping("/authentication/index")
+    @GetMapping("/login")
     public ModelAndView authenticationLogin(ModelAndView mv) throws IOException {
-        mv.setViewName("/index.html");
+        mv.setViewName("login.html");
         return mv;
     }
 }
